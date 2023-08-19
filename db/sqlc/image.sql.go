@@ -35,18 +35,35 @@ func (q *Queries) CreateImage(ctx context.Context, arg CreateImageParams) (Image
 	return i, err
 }
 
-const getImages = `-- name: GetImages :one
+const getImages = `-- name: GetImages :many
 SELECT id, user_id, image_path, image_url FROM images
+WHERE user_id = $1
 `
 
-func (q *Queries) GetImages(ctx context.Context) (Image, error) {
-	row := q.db.QueryRowContext(ctx, getImages)
-	var i Image
-	err := row.Scan(
-		&i.ID,
-		&i.UserID,
-		&i.ImagePath,
-		&i.ImageUrl,
-	)
-	return i, err
+func (q *Queries) GetImages(ctx context.Context, userID int64) ([]Image, error) {
+	rows, err := q.db.QueryContext(ctx, getImages, userID)
+	if err != nil {
+		return nil, err
+	}
+	defer rows.Close()
+	items := []Image{}
+	for rows.Next() {
+		var i Image
+		if err := rows.Scan(
+			&i.ID,
+			&i.UserID,
+			&i.ImagePath,
+			&i.ImageUrl,
+		); err != nil {
+			return nil, err
+		}
+		items = append(items, i)
+	}
+	if err := rows.Close(); err != nil {
+		return nil, err
+	}
+	if err := rows.Err(); err != nil {
+		return nil, err
+	}
+	return items, nil
 }

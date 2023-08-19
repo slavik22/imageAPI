@@ -7,7 +7,7 @@ postgres:
 	docker run --name postgres:15-alpines -p 5432:5432 -e POSTGRES_USER=postgres -e POSTGRES_PASSWORD=password -d postgres
 
 createdb:
-	docker exec -it postgres createdb --username=root --owner=root images
+	docker exec -it postgres createdb --username=postgres --owner=postgres images
 
 dropdb:
 	docker exec -it postgres dropdb simple_bank
