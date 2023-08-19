@@ -35,6 +35,21 @@ func (m *MockStore) EXPECT() *MockStoreMockRecorder {
 	return m.recorder
 }
 
+// CreateImage mocks base method.
+func (m *MockStore) CreateImage(arg0 context.Context, arg1 db.CreateImageParams) (db.Image, error) {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "CreateImage", arg0, arg1)
+	ret0, _ := ret[0].(db.Image)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+// CreateImage indicates an expected call of CreateImage.
+func (mr *MockStoreMockRecorder) CreateImage(arg0, arg1 interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "CreateImage", reflect.TypeOf((*MockStore)(nil).CreateImage), arg0, arg1)
+}
+
 // CreateUser mocks base method.
 func (m *MockStore) CreateUser(arg0 context.Context, arg1 db.CreateUserParams) (db.User, error) {
 	m.ctrl.T.Helper()
@@ -48,6 +63,21 @@ func (m *MockStore) CreateUser(arg0 context.Context, arg1 db.CreateUserParams) (
 func (mr *MockStoreMockRecorder) CreateUser(arg0, arg1 interface{}) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "CreateUser", reflect.TypeOf((*MockStore)(nil).CreateUser), arg0, arg1)
+}
+
+// GetImages mocks base method.
+func (m *MockStore) GetImages(arg0 context.Context, arg1 int64) ([]db.Image, error) {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "GetImages", arg0, arg1)
+	ret0, _ := ret[0].([]db.Image)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+// GetImages indicates an expected call of GetImages.
+func (mr *MockStoreMockRecorder) GetImages(arg0, arg1 interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetImages", reflect.TypeOf((*MockStore)(nil).GetImages), arg0, arg1)
 }
 
 // GetUser mocks base method.

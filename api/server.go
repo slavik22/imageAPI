@@ -39,7 +39,10 @@ func (server *Server) setupRouter() {
 	router.POST("/login", server.loginUser)
 	router.POST("/register", server.createUser)
 
-	_ = router.Group("/").Use(authMiddleware(server.jwtMaker))
+	authRoutes := router.Group("/").Use(authMiddleware(server.jwtMaker))
+
+	authRoutes.GET("/images", server.getImages)
+	authRoutes.POST("/upload-picture", server.createImage)
 
 	server.router = router
 }

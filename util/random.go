@@ -12,7 +12,10 @@ func init() {
 	rand.Seed(time.Now().UnixNano())
 }
 
-// RandomString generates a random string of length n
+func RandomInt(min, max int64) int64 {
+	return min + rand.Int63n(max-min+1)
+}
+
 func RandomString(n int) string {
 	var sb strings.Builder
 	k := len(alphabet)
@@ -25,7 +28,6 @@ func RandomString(n int) string {
 	return sb.String()
 }
 
-// RandomOwner generates a random owner name
 func RandomOwner() string {
 	return RandomString(6)
 }

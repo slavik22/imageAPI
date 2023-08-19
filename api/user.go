@@ -47,7 +47,7 @@ func (server *Server) loginUser(ctx *gin.Context) {
 	}
 
 	accessToken, _, err := server.jwtMaker.CreateToken(
-		user.Username,
+		user.ID,
 		server.config.AccessTokenDuration,
 	)
 
