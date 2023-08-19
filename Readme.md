@@ -1,2 +1,2 @@
-# REST API Server example
+# REST API Server
 
