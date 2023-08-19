@@ -8,7 +8,6 @@ require (
 	github.com/golang-migrate/migrate/v4 v4.16.2
 	github.com/google/uuid v1.3.0
 	github.com/lib/pq v1.10.9
-	github.com/mattes/migrate v3.0.1+incompatible
 	github.com/slavik22/bank v0.0.0-20230813090555-f5ae670763bb
 	github.com/spf13/viper v1.16.0
 	github.com/stretchr/testify v1.8.4
