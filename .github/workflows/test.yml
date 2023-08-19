@@ -2,9 +2,9 @@ name: ci-test
 
 on:
   push:
-    branches: [ "images" ]
-  pull_request:
     branches: [ "develop" ]
+  pull_request:
+    branches: [ "develop", "main" ]
 
 jobs:
 
