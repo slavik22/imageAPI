@@ -6,6 +6,7 @@ import (
 	"github.com/slavik22/imageAPI/token"
 	"github.com/slavik22/imageAPI/util"
 	"net/http"
+	"net/url"
 )
 
 func (server *Server) getImages(ctx *gin.Context) {
@@ -33,7 +34,12 @@ func (server *Server) createImage(ctx *gin.Context) {
 		return
 	}
 
-	path, err := util.DownloadImage(requestData.ImageUrl, "images")
+	if _, err := url.ParseRequestURI(requestData.ImageUrl); err != nil {
+		ctx.JSON(http.StatusBadRequest, errorResponse(err))
+		return
+	}
+
+	path, err := util.DownloadImage(requestData.ImageUrl, "../images")
 
 	if err != nil {
 		ctx.JSON(http.StatusInternalServerError, errorResponse(err))
