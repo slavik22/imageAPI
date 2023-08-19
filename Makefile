@@ -1,5 +1,4 @@
-DB_URL=postgresql://root:password@127.0.0.1:5432/images?sslmode=disable
-DB_URL_TEST=postgresql://root:password@localhost:5432/imagestest?sslmode=disable
+DB_URL=postgresql://postgres:password@localhost:5432/images?sslmode=disable
 
 network:
 	docker network create bank-network
