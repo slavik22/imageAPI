@@ -2,7 +2,7 @@ name: ci-test
 
 on:
   push:
-    branches: [ "user_features" ]
+    branches: [ "images" ]
   pull_request:
     branches: [ "develop" ]
 
